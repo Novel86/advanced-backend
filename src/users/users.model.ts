@@ -2,6 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import {
 	AllowNull,
 	AutoIncrement,
+	BelongsToMany,
 	Column,
 	Comment,
 	DataType,
@@ -11,6 +12,8 @@ import {
 	Table,
 	Unique,
 } from 'sequelize-typescript';
+import { Role } from 'src/roles/roles.model';
+import { UserRole } from 'src/roles/user-role.model';
 
 interface UserCreationAttrs {
 	email: string;
@@ -60,4 +63,7 @@ export class User extends Model<User, UserCreationAttrs> {
 	@Comment('who has blocked user')
 	@Column({ type: DataType.STRING })
 	banInitiator: string;
+
+	@BelongsToMany(() => Role, () => UserRole)
+	roles: Role[];
 }
