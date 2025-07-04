@@ -25,6 +25,13 @@ export class RolesController {
 	// 	return this.roleService.updateByValue(value, dto);
 	// }
 
+	@ApiOperation({ summary: 'get all roles' })
+	@ApiResponse({ status: 200, type: [Role] })
+	@Get()
+	getAll() {
+		return this.roleService.getAll();
+	}
+
 	@ApiOperation({ summary: 'get role by value' })
 	@ApiResponse({ status: 200, type: Role })
 	@Get('/:value')
