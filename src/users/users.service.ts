@@ -12,12 +12,12 @@ export class UsersService {
 	) {}
 
 	async create(dto: CreateUserDto) {
-		//fix don't create user whith roles
 		try {
 			const user = await this.userRepository.create(dto);
-			const role = await this.rolesService.getRoleByValue('user');
+			const roleData = await this.rolesService.getRoleByValue('user');
+			// const role = JSON.parse(roleData);
 
-			await user.$set('roles', [role.id]);
+			await user.$set('roles', [roleData.toJSON().id_role]);
 
 			return user;
 		} catch (error) {
@@ -27,7 +27,7 @@ export class UsersService {
 
 	async getAll() {
 		try {
-			const users = await this.userRepository.findAll();
+			const users = await this.userRepository.findAll({ include: { all: true } });
 			return users;
 		} catch (error) {
 			return error;

@@ -26,9 +26,9 @@ export class Role extends Model<Role, RoleCreationAttrs> {
 	@AutoIncrement
 	@PrimaryKey
 	@Column({ type: DataType.INTEGER })
-	id_Role: number;
+	id_role: number;
 
-	@ApiProperty({ example: 'administrator', description: 'app users role' })
+	@ApiProperty({ example: 'administrator', description: 'users role title' })
 	@Unique
 	@AllowNull(false)
 	@Comment('app users role')

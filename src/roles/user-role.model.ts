@@ -24,7 +24,6 @@ export class UserRole extends Model<UserRole> {
 	id_user_role: number;
 
 	@ForeignKey(() => User)
-	@AllowNull(false)
 	@Comment('user id (foreign key)')
 	@Column({
 		type: DataType.INTEGER,
@@ -32,7 +31,6 @@ export class UserRole extends Model<UserRole> {
 	id_user: number;
 
 	@ForeignKey(() => Role)
-	@AllowNull(false)
 	@Comment('role id (foreign key)')
 	@Column({
 		type: DataType.INTEGER,
